@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Scrapbook 💗</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&display=swap');
+  :root{--pink:#f2b8c3;--cream:#fff0c9;--red:#8e1019;--ink:#40151b;--white:#fffaf4}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 10%,#ffd7df,transparent 35%),linear-gradient(135deg,#e99da9,#f6c8c7 55%,#e9a5b3);font-family:'DM Sans',sans-serif;color:var(--ink);overflow-x:hidden}
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E")}
+  .top{max-width:1050px;margin:24px auto 12px;padding:0 18px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+  .brand{font-family:'Playfair Display',serif;font-size:clamp(25px,5vw,48px);line-height:1.05;color:#190c0d}
+  .brand em{font-weight:500;color:white}
+  .sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-top:8px}
+  .music{border:1px solid #fff8;border-radius:30px;padding:11px 15px;background:#7d0d17;color:white;box-shadow:0 7px 18px #6e1a2528;cursor:pointer;font-weight:700;white-space:nowrap}
+  .music:hover{transform:translateY(-2px)}
+  .music:focus-visible,button:focus-visible{outline:3px solid white;outline-offset:3px}
+  .player-tools{max-width:1050px;margin:0 auto 15px;padding:0 18px;display:flex;justify-content:flex-end;gap:8px;align-items:center;font-size:12px}
+  .file-label{background:#fff0c9;border:1px dashed #9b343b;padding:8px 11px;border-radius:20px;cursor:pointer}
+  input[type=file]{display:none}
+  .book{max-width:1050px;margin:auto;padding:10px 18px 30px}
+  .slide{display:none;min-height:570px;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;animation:fadeIn .65s ease both}
+  .slide.active{display:grid}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(18px) rotate(-.5deg);filter:blur(3px)}to{opacity:1;transform:translateY(0) rotate(0);filter:blur(0)}}
+  .paper{position:relative;background:var(--cream);padding:28px;border:8px solid #fff8e9;box-shadow:7px 10px 0 #72141a24,0 18px 40px #752b3524;overflow:hidden}
+  .paper.red{background:var(--red);color:white;border-color:#a42a30}
+  .paper.white{background:#fffaf5}
+  .tape{position:absolute;top:10px;left:50%;transform:translateX(-50%) rotate(-3deg);width:95px;height:23px;background:#f4cbd0bb}
+  h1,h2,h3{font-family:'Playfair Display',serif;margin:0 0 14px}
+  h1{font-size:clamp(38px,6vw,66px);line-height:1.02}
+  h2{font-size:clamp(28px,4vw,43px)}
+  p{line-height:1.75}
+  .script{font-family:'Playfair Display',serif;font-style:italic}
+  .tiny{font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .hero .big-heart{font-size:66px;animation:heartbeat 1.5s infinite}
+  @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.15)}30%{transform:scale(1)}}
+  .photo{min-height:190px;border:3px solid white;background:linear-gradient(135deg,#e7a0ae,#fbe4d5);display:flex;align-items:center;justify-content:center;text-align:center;color:#74232c;font-size:14px;position:relative;overflow:hidden}
+  .photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .photo span{padding:15px;z-index:1}
+  .photo input{position:absolute;inset:0;display:block;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2}
+  .photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .photo-grid .photo{min-height:150px}
+  .polaroid{background:white;padding:10px 10px 30px;box-shadow:0 5px 12px #3d121a26;transform:rotate(-2deg);margin:8px}
+  .polaroid:nth-child(even){transform:rotate(2deg)}
+  .polaroid .photo{min-height:220px}
+  .sticker{position:absolute;font-size:35px;right:20px;bottom:15px;transform:rotate(12deg)}
+  .quote{font-size:clamp(21px,3vw,31px);line-height:1.45;font-family:'Playfair Display',serif}
+  .timeline{border-left:2px dashed #9c333a;margin:22px 0 0 8px;padding-left:22px}
+  .timeline p{position:relative;margin:0 0 20px}
+  .timeline p:before{content:"♥";position:absolute;left:-32px;color:#9c1723}
+  .letter{font-family:'Playfair Display',serif;font-size:18px;line-height:1.85}
+  .nav{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 25px}
+  .nav button{border:0;background:#7d0d17;color:white;border-radius:50px;padding:12px 20px;cursor:pointer;font-weight:700;box-shadow:0 5px 0 #5d0a11}
+  .nav button:active{transform:translateY(3px);box-shadow:0 2px 0 #5d0a11}
+  .dots{display:flex;gap:7px}
+  .dot{width:9px;height:9px;border-radius:50%;background:#ffffff9c;border:1px solid #8e1019;cursor:pointer}
+  .dot.active{background:#8e1019;transform:scale(1.3)}
+  .footer{text-align:center;padding:0 15px 30px;font-size:11px;letter-spacing:3px}
+  .float{position:fixed;bottom:-40px;pointer-events:none;animation:floatUp linear forwards;z-index:5}
+  @keyframes floatUp{to{transform:translateY(-115vh) rotate(30deg);opacity:0}}
+  .editable{border-bottom:1px dashed #bb777c;outline:none;min-width:40px}
+  @media(max-width:700px){.top{align-items:flex-start}.brand{font-size:29px}.music{font-size:12px;padding:10px}.slide{min-height:unset;grid-template-columns:1fr}.paper{min-height:330px;padding:24px}.slide .paper{min-height:370px}.photo-grid .photo{min-height:125px}.player-tools{justify-content:center;flex-wrap:wrap}}
+  @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div><div class="brand">Birthday <em>Scrapbook</em> ♡</div><div class="sub">a little website made with lots of love</div></div>
+  <button class="music" id="musicBtn" aria-label="Putar atau jeda musik">♫ Play our song</button>
+</header>
+<div class="player-tools">
+  <label class="file-label" for="songFile">＋ Pilih lagu dari perangkat</label>
+  <input id="songFile" type="file" accept="audio/*">
+  <span id="musicStatus">Pilih lagu sendiri agar musiknya sesuai kenangan kalian ✨</span>
+</div>
+<audio id="audio" loop></audio>
+
+<main class="book">
+  <!-- Slide 1 -->
+  <section class="slide active">
+    <div class="paper red hero">
+      <div class="tape"></div><div class="tiny">to my favorite person</div>
+      <div class="big-heart">💗</div>
+      <h1>Happy<br><span class="script">Birthday!</span></h1>
+      <p>for the girl who makes my world a little softer ✨</p>
+      <div class="photo" style="width:78%;min-height:150px"><span>📸 Klik untuk tambah foto kalian</span><input type="file" accept="image/*" aria-label="Tambah foto sampul" onchange="loadPhoto(this)"></div>
+      <p class="script">— with love, always ♡</p>
+    </div>
+    <div class="paper hero">
+      <div class="tiny">chapter 01 · the birthday girl</div>
+      <h2>It's your<br><span class="script">special day</span>!</h2>
+      <p>Hari ini dunia merayakan seseorang yang spesial banget. Dan aku cuma mau kamu tahu… aku beruntung bisa jadi bagian kecil dari cerita hidup kamu. 🧸</p>
+      <div style="font-size:42px">🎂 🦋 🌷</div>
+      <p class="tiny">make a wish, pretty girl</p>
+      <span class="sticker">⭐</span>
+    </div>
+  </section>
+  <!-- Slide 2 -->
+  <section class="slide">
+    <div class="paper">
+      <div class="tiny">chapter 02 · little moments</div><h2>Our tiny<br><span class="script">memories</span></h2>
+      <p>Beberapa momen mungkin kelihatan sederhana, tapi kalau sama kamu, hal kecil pun bisa jadi kenangan favoritku.</p>
+      <div class="photo-grid">
+        <div class="photo"><span>📷 our first photo</span><input type="file" accept="image/*" aria-label="Tambah foto kenangan 1" onchange="loadPhoto(this)"></div>
+        <div class="photo"><span>🧋 our little date</span><input type="file" accept="image/*" aria-label="Tambah foto kenangan 2" onchange="loadPhoto(this)"></div>
+        <div class="photo"><span>🌇 random day</span><input type="file" accept="image/*" aria-label="Tambah foto kenangan 3" onchange="loadPhoto(this)"></div>
+        <div class="photo"><span>💞 just us</span><input type="file" accept="image/*" aria-label="Tambah foto kenangan 4" onchange="loadPhoto(this)"></div>
+      </div><span class="sticker">♡</span>
+    </div>
+    <div class="paper red hero">
+      <div class="tiny">things i adore about you</div><h2>My favorite<br><span class="script">human</span></h2>
+      <p>♡ senyum kamu<br>♡ cara kamu cerita hal random<br>♡ ketawa kamu yang bikin ikutan ketawa<br>♡ perhatian kecil yang kamu kasih<br>♡ jadi diri kamu sendiri</p>
+      <p class="script">and a million more reasons…</p><div style="font-size:34px">🎀 🐻 💌</div>
+    </div>
+  </section>
+  <!-- Slide 3 -->
+  <section class="slide">
+    <div class="paper red">
+      <div class="tiny">chapter 03 · a little reminder</div><h2>You are<br><span class="script">my home</span> 🏡</h2>
+      <p class="quote">“Di antara banyak hal baik yang bisa terjadi, mengenal kamu adalah salah satu yang paling aku syukuri.”</p>
+      <div class="photo"><span>🏡 add your favorite picture here</span><input type="file" accept="image/*" aria-label="Tambah foto favorit" onchange="loadPhoto(this)"></div>
+      <p class="tiny">my safe place has your smile</p>
+    </div>
+    <div class="paper">
+      <div class="tiny">chapter 04 · birthday wishes</div><h2>Wish list<br><span class="script">for you</span></h2>
+      <div class="timeline">
+        <p>Semoga kamu selalu sehat, dan punya banyak alasan untuk tersenyum.</p>
+        <p>Semoga hal-hal yang kamu perjuangkan satu per satu menemukan jalannya.</p>
+        <p>Semoga kamu dikelilingi orang-orang yang menyayangimu dengan tulus.</p>
+        <p>Dan semoga di umur yang baru ini, kamu makin sayang sama diri sendiri. 🌷</p>
+      </div><span class="sticker">🌟</span>
+    </div>
+  </section>
+  <!-- Slide 4 -->
+  <section class="slide">
+    <div class="paper white">
+      <div class="tiny">chapter 05 · a letter for you</div><h2>Dear <span class="script">birthday girl,</span></h2>
+      <p class="letter">Happy birthday, sayang. Makasih ya sudah hadir dan bikin banyak hari terasa lebih menyenangkan. Aku mungkin nggak selalu bisa merangkai kata yang sempurna, tapi aku harap kamu selalu bisa merasakan kalau kamu itu berharga dan disayang.</p>
+      <p class="letter">Jangan terlalu keras sama diri sendiri, ya. Kamu nggak harus selalu kuat atau selalu baik-baik aja. Pelan-pelan juga nggak apa-apa. Aku berharap tahun ini membawa lebih banyak tawa, kesempatan baik, dan hal-hal yang bikin hati kamu hangat. I’m rooting for you, always. 💌</p>
+      <p class="script">with all my heart, ♡</p>
+    </div>
+    <div class="paper red hero">
+      <div class="tiny">one last thing…</div><div style="font-size:68px">🎁</div>
+      <h2>Make a wish!</h2>
+      <p>Pejamkan mata, tiup lilinnya, lalu siap-siap menerima banyak hal baik yang menunggumu.</p>
+      <div class="photo" style="width:80%"><span>🕯️ your birthday moment</span><input type="file" accept="image/*" aria-label="Tambah foto ulang tahun" onchange="loadPhoto(this)"></div>
+      <h2 class="script">Love you lots! 💗</h2>
+      <button class="music" onclick="celebrate()">Tap for confetti ♡</button>
+    </div>
+  </section>
+</main>
+<nav class="nav" aria-label="Navigasi slide">
+  <button id="prev">← Back</button><div class="dots" id="dots"></div><span id="count" class="tiny">01 / 04</span><button id="next">Next →</button>
+</nav>
+<footer class="footer">MADE WITH ♡ JUST FOR YOU · HAPPY BIRTHDAY</footer>
+<script>
+const slides=[...document.querySelectorAll('.slide')], dotsBox=document.getElementById('dots'), count=document.getElementById('count');
+let current=0;
+slides.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label','Buka slide '+(i+1));d.onclick=()=>show(i);dotsBox.appendChild(d)});
+function show(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>{s.classList.toggle('active',i===current)});[...dotsBox.children].forEach((d,i)=>d.classList.toggle('active',i===current));count.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');document.querySelector('.book').scrollIntoView({behavior:'smooth',block:'start'})}
+document.getElementById('prev').onclick=()=>show(current-1);
+document.getElementById('next').onclick=()=>show(current+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(current+1);if(e.key==='ArrowLeft')show(current-1)});
+function loadPhoto(input){if(!input.files||!input.files[0])return;const file=input.files[0];if(!file.type.startsWith('image/'))return;const box=input.parentElement;let img=box.querySelector('img');if(!img){img=document.createElement('img');box.appendChild(img)}img.src=URL.createObjectURL(file);const label=box.querySelector('span');if(label)label.style.display='none'}
+const audio=document.getElementById('audio'), musicBtn=document.getElementById('musicBtn'), songFile=document.getElementById('songFile'), musicStatus=document.getElementById('musicStatus');
+songFile.addEventListener('change',()=>{const f=songFile.files[0];if(!f)return;audio.src=URL.createObjectURL(f);musicStatus.textContent='Lagu siap diputar: '+f.name;musicBtn.textContent='♫ Play our song';});
+musicBtn.onclick=async()=>{if(!audio.src){songFile.click();musicStatus.textContent='Pilih file lagu dari perangkatmu dulu 🎶';return}if(audio.paused){try{await audio.play();musicBtn.textContent='Ⅱ Pause our song';musicStatus.textContent='Now playing ♡'}catch(e){musicStatus.textContent='Coba pilih file musik lain ya.'}}else{audio.pause();musicBtn.textContent='♫ Play our song';musicStatus.textContent='Music paused'}};
+function celebrate(){const emojis=['💗','💖','✨','🌸','🎀','💕','⭐'];for(let i=0;i<35;i++){const el=document.createElement('span');el.className='float';el.textContent=emojis[Math.floor(Math.random()*emojis.length)];el.style.left=Math.random()*100+'vw';el.style.animationDuration=(3+Math.random()*4)+'s';el.style.fontSize=(16+Math.random()*22)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),7500)}}
+setInterval(()=>{if(!document.hidden)celebrateSoft()},4500);
+function celebrateSoft(){if(Math.random()>.55){const el=document.createElement('span');el.className='float';el.textContent=['♡','✨','🌸'][Math.floor(Math.random()*3)];el.style.left=Math.random()*100+'vw';el.style.animationDuration='5s';el.style.fontSize='20px';document.body.appendChild(el);setTimeout(()=>el.remove(),5200)}}
+</script>
+</body>
+</html>
